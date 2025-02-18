@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import { useState } from 'react';
 import TrainingForm from './components/trainingform/TrainingForm';
 import TrainingList from './components/traininglist/TrainingList';
 

@@ -2,6 +2,7 @@ const express = require("express");
 const userRoutes = express.Router();
 const fs = require("fs");
 const path = require("path");
+const userController = require("../controllers/userController");
 
 const usersFile = path.resolve(__dirname, "..//../data/users.json");
 
@@ -114,5 +115,8 @@ userRoutes.delete("/:id", (req, res) => {
     });
   });
 });
+
+userRoutes.get("/getAll", userController.getAllUsers);
+userRoutes.post("/create", userController.addUser);
 
 module.exports = userRoutes;
