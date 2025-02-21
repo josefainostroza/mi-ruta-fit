@@ -7,7 +7,16 @@ const userSchema = new Schema(
     lastName: { type: String, require: true },
     email: { type: String, require: true },
     password: { type: String, require: true },
-    dateActivity: [{ type: Date }],
+    dob: { type: Date, require: true }, // date of birthday
+    phone: { type: Number, require: true },
+    lot: { type: Number }, // level of training
+    activities: [
+      {
+        toa: { type: String }, //Type of activity
+        startDate: { type: Date },
+        endDate: { type: Date },
+      },
+    ],
   },
   {
     timestamps: true,
