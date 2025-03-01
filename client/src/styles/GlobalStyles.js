@@ -25,10 +25,16 @@ export const GlobalStyles = createGlobalStyle`
     }
 
     body{
-        font-family: sans-serif;
+        font-family: 'Inter';
         margin: 0;
-        background-color: #333;
-        color: #2c2c2c;
+        padding: 0;
+        background-color: #282828;
+        color:rgb(255, 255, 255);
+    }
+
+    h1,h2,p{
+        margin: 0;
+
     }
 
 `;

@@ -18,7 +18,7 @@ const Styledsubtitle = styled.p`
 	font-weight: 400;
 	text-align: center;
 `;
-const Styledsubtitlelogin = styled.p`
+const Styledsubtitleregister = styled.p`
 	color: hsl(0, 0%, 100%);
 	font-size: 18px;
 	font-weight: 400;
@@ -31,7 +31,7 @@ const StyledTextContainer = styled.div`
 	justify-content: space-between;
 	align-items: center;
 `;
-const StyledContainerLogin = styled.div`
+const StyledContainerRegister = styled.div`
 	display: flex;
 	flex-direction: column;
 	justify-content: center;
@@ -57,6 +57,7 @@ const Styledform = styled.input`
 	border: solid white 0.5px;
 	border-radius: 50px;
 	padding: 15px 67px;
+	color: rgb(110, 113, 118);
 `;
 const StyledContainerForm = styled.div`
 	display: flex;
@@ -75,7 +76,7 @@ const StyledText = styled.p`
 	display: flex;
 	justify-content: center;
 `;
-const StyledRegister = styled.span`
+const StyledLogin = styled.span`
 	font-weight: 600;
 	margin-left: 10px;
 `;
@@ -83,14 +84,14 @@ export {
 	StyledLogo,
 	StyledTitle,
 	Styledsubtitle,
-	Styledsubtitlelogin,
+	Styledsubtitleregister,
 	StyledTextContainer,
-	StyledContainerLogin,
+	StyledContainerRegister,
 	Styledimg,
 	StyledContainer,
 	Styledform,
 	StyledContainerForm,
 	StyledButton,
 	StyledText,
-	StyledRegister
+	StyledLogin
 };

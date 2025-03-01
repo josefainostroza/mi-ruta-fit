@@ -101,3 +101,65 @@ export {
 	StyledContainerMenu,
 	StyledContainer
 };
+
+export const Container = styled.div`
+	min-height: 100vh;
+	color: white;
+	padding: 35px 72px;
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+`;
+
+export const FormWrapper = styled.div`
+	width: 100%;
+	display: flex;
+	flex-direction: column;
+	justify-content: center;
+	align-items: center;
+	gap: 30px;
+	margin-top: 20px;
+	background-color: #91d3df;
+	padding: 40px 100px;
+	border-radius: 40px;
+	box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.3);
+`;
+export const ContainerForm = styled.div`
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	gap: 30px;
+`;
+export const StyledActivity = styled.input`
+	padding: 10px;
+	border-radius: 50px;
+	border: solid 1px rgb(9, 73, 85);
+	background-color: transparent;
+`;
+export const StyledActivityText = styled.label`
+	color: black;
+`;
+export const StyledButtonActivity = styled.button`
+	padding: 10px 100px;
+	border-radius: 50px;
+	border: 0;
+	background-color: white;
+`;
+export const ActivityCard = styled.div`
+	width: 100%;
+	max-width: 800px;
+	display: grid;
+	grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+	gap: 16px;
+	margin-top: 20px;
+`;
+
+export const ChartWrapper = styled.div`
+	width: 100%;
+	background-color: #868ec1;
+	padding: 20px;
+	margin-top: 20px;
+	border-radius: 40px;
+	box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.3);
+	text-align: center;
+`;

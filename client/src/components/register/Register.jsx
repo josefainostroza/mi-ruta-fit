@@ -1,6 +1,21 @@
 import { useForm } from 'react-hook-form';
 import axios from 'axios';
 import { Link, useNavigate } from 'react-router-dom';
+import {
+	StyledButton,
+	StyledContainer,
+	StyledContainerForm,
+	StyledContainerRegister,
+	Styledform,
+	Styledimg,
+	StyledLogin,
+	StyledLogo,
+	Styledsubtitle,
+	Styledsubtitleregister,
+	StyledText,
+	StyledTextContainer,
+	StyledTitle
+} from './register.styles';
 
 const Register = () => {
 	const {
@@ -13,10 +28,14 @@ const Register = () => {
 
 	const onSubmit = async data => {
 		try {
-			// Enviar los datos al backend
+			const formattedData = {
+				...data,
+				dob: new Date(data.dob).toISOString() // Convierte a formato ISO para MongoDB
+			};
+
 			const response = await axios.post(
 				'http://localhost:3000/user/create',
-				data
+				formattedData
 			);
 			alert('Usuario registrado con éxito');
 
@@ -30,47 +49,73 @@ const Register = () => {
 	};
 
 	return (
-		<div>
-			<h2>Registro de Usuario</h2>
-			<form onSubmit={handleSubmit(onSubmit)}>
-				<input
-					{...register('firstName', { required: 'El nombre es obligatorio' })}
-					placeholder='Nombre'
-				/>
-				{errors.firstName && <p>{errors.firstName.message}</p>}
+		<StyledContainer>
+			<StyledContainerRegister>
+				<StyledTextContainer>
+					<StyledLogo>MI RUTA FIT</StyledLogo>
+					<StyledTitle>¡Te esperábamos!</StyledTitle>
+					<div>
+						<Styledsubtitle>
+							Guarda cada kilómetro recorrido y observa tu evolución.
+						</Styledsubtitle>
+						<Styledsubtitleregister>
+							¡Registrate y empieza hoy!{' '}
+						</Styledsubtitleregister>
+					</div>
+				</StyledTextContainer>
+				<form onSubmit={handleSubmit(onSubmit)}>
+					{' '}
+					<StyledContainerForm>
+						<Styledform
+							{...register('firstName', {
+								required: 'El nombre es obligatorio'
+							})}
+							placeholder='Nombre'
+						/>
+						{errors.firstName && <p>{errors.firstName.message}</p>}
+						<Styledform
+							{...register('lastName', {
+								required: 'El apellido es obligatorio'
+							})}
+							placeholder='Apellido'
+						/>
+						{errors.lastName && <p>{errors.lastName.message}</p>}
+						<Styledform
+							{...register('dob', {
+								required: 'La fecha de nacimiento es obligatoria'
+							})}
+							type='date'
+							placeholder='Fecha de nacimiento'
+						/>
+						{errors.dob && <p>{errors.dob.message}</p>}
+						<Styledform
+							{...register('email', { required: 'El email es obligatorio' })}
+							placeholder='Email'
+						/>
+						{errors.email && <p>{errors.email.message}</p>}
 
-				<input
-					{...register('lastName', { required: 'El apellido es obligatorio' })}
-					placeholder='Apellido'
-				/>
-				{errors.lastName && <p>{errors.lastName.message}</p>}
-
-				<input
-					{...register('email', { required: 'El email es obligatorio' })}
-					placeholder='Email'
-				/>
-				{errors.email && <p>{errors.email.message}</p>}
-
-				{/* Campo de contraseña */}
-				<input
-					{...register('password', {
-						required: 'La contraseña es obligatoria'
-					})}
-					type='password'
-					placeholder='Contraseña'
-				/>
-				{errors.password && <p>{errors.password.message}</p>}
-
-				<button type='submit'>Registrar</button>
-			</form>
-
-			{/* Link para ir a la página de Login */}
-			<div>
-				<p>
-					¿Ya tienes una cuenta? <Link to='/login'>Iniciar sesión</Link>
-				</p>
-			</div>
-		</div>
+						{/* Campo de contraseña */}
+						<Styledform
+							{...register('password', {
+								required: 'La contraseña es obligatoria'
+							})}
+							type='password'
+							placeholder='Contraseña'
+						/>
+						{errors.password && <p>{errors.password.message}</p>}
+					</StyledContainerForm>
+					<StyledButton to='/home'>Registrarme</StyledButton>
+					<StyledText>
+						¿Ya tienes una cuenta?{' '}
+						<Link to='/login'>
+							{' '}
+							<StyledLogin>Iniciar sesión</StyledLogin>
+						</Link>
+					</StyledText>
+				</form>
+			</StyledContainerRegister>
+			<Styledimg src='/assets/images/imgRegister.jpg' alt='' />
+		</StyledContainer>
 	);
 };
 
