@@ -36,6 +36,8 @@ const Login = () => {
 			if (!response.data.login) {
 				alert(response.data.message);
 			} else {
+				localStorage.setItem('email', response?.data?.email);
+				localStorage.setItem('id', response?.data?.id);
 				navigate('/home');
 			}
 		} catch (error) {

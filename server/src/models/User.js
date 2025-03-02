@@ -5,12 +5,13 @@ const userSchema = new Schema(
   {
     name: { type: String, require: true },
     lastName: { type: String, require: true },
-    email: { type: String, require: true },
+    email: { type: String, require: true, unique: true },
     password: { type: String, require: true },
     dob: { type: Date, require: true }, // date of birthday
     activities: [
       {
         toa: { type: String }, //Type of activity
+        km: { type: Number, default: "" },
         startDate: { type: Date },
         endDate: { type: Date },
       },

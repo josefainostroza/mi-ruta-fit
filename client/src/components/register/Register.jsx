@@ -39,7 +39,9 @@ const Register = () => {
 			);
 			alert('Usuario registrado con éxito');
 
-			if (response) {
+			console.log(response);
+
+			if (response.status === 200) {
 				navigate('/home');
 			}
 		} catch (error) {
@@ -104,7 +106,7 @@ const Register = () => {
 						/>
 						{errors.password && <p>{errors.password.message}</p>}
 					</StyledContainerForm>
-					<StyledButton to='/home'>Registrarme</StyledButton>
+					<StyledButton type='submit'>Registrarme</StyledButton>
 					<StyledText>
 						¿Ya tienes una cuenta?{' '}
 						<Link to='/login'>

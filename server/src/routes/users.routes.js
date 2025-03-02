@@ -12,6 +12,8 @@ const userController = require("../controllers/userController");
 
 userRoutes.get("/", userController.getAllUsers);
 userRoutes.post("/create", userController.addUser);
-userRoutes.post("/login", userController.getUserByEmail);
+userRoutes.post("/login", userController.login);
+userRoutes.post("/activities", userController.getUserByEmail);
+userRoutes.post("/:id", userController.updateUser);
 
 module.exports = userRoutes;

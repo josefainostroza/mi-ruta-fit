@@ -7,7 +7,7 @@ const mongoose = require("mongoose");
 
 const corsOptions = {
   origin: "*", // Orígenes permitidos
-  methods: ["GET", "POST", "PATCH", "DELETE"], // Métodos permitidos
+  methods: ["GET", "POST", "PATCH", "DELETE", "PUT"], // Métodos permitidos
   allowedHeaders: ["Content-Type", "Authorization"], // Headers permitidos
   credentials: true, // Habilitar cookies/credenciales
 };

@@ -1,4 +1,4 @@
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import {
 	StyledButtonClose,
 	StyledButtonProfile,
@@ -16,6 +16,13 @@ import {
 } from './home.styles';
 
 const Home = () => {
+	const navigate = useNavigate();
+
+	const logout = () => {
+		localStorage.removeItem('email');
+		navigate('/login');
+	};
+
 	return (
 		<StyledContainerHome>
 			<StyledContainerHeader>
@@ -25,7 +32,7 @@ const Home = () => {
 				</StyledUser>
 				<StyledContainernButton>
 					<StyledButtonProfile>Mi Perfil</StyledButtonProfile>
-					<Link to='/login'>
+					<Link onClick={logout}>
 						<StyledButtonClose>Cerrar Sesión</StyledButtonClose>
 					</Link>
 				</StyledContainernButton>

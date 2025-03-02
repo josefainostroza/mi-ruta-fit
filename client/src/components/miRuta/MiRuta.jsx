@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 
 import {
 	LineChart,
@@ -18,7 +18,6 @@ import {
 	ContainerForm,
 	FormWrapper,
 	StyledActivity,
-	StyledActivityText,
 	StyledButtonActivity,
 	StyledButtonClose,
 	StyledButtonProfile,
@@ -35,17 +34,60 @@ import {
 	StyledUserName
 } from './miruta.styles';
 import { Link } from 'react-router-dom';
+import axios from 'axios';
 
 const MiRuta = () => {
 	const [activities, setActivities] = useState([]);
-	const [form, setForm] = useState({ toa: '', startDate: '', endDate: '' });
+	const [allActivities, setAllActivities] = useState([]);
+	const [form, setForm] = useState({
+		toa: '',
+		km: '',
+		startDate: '',
+		endDate: ''
+	});
 
 	const handleChange = e => {
 		setForm({ ...form, [e.target.name]: e.target.value });
 	};
 
-	const handleSubmit = e => {
+	useEffect(() => {
+		getActivities();
+	}, [activities]);
+
+	const getActivities = async () => {
+		try {
+			const response = await axios.post(
+				`http://localhost:3000/user/activities`,
+				{
+					email: localStorage.getItem('email')
+				}
+			);
+			setAllActivities(response.data.activities);
+			console.log(response.data);
+		} catch (error) {
+			console.log(error);
+		}
+	};
+
+	const handleSubmit = async e => {
 		e.preventDefault();
+		try {
+			const response = await axios.post(
+				`http://localhost:3000/user/${localStorage.getItem('id')}`,
+				{
+					toa: form.toa,
+					km: form.km,
+					startDate: form.startDate,
+					endDate: form.endDate
+				}
+			);
+			alert('Usuario registrado con éxito');
+
+			console.log(response);
+		} catch (error) {
+			console.error('Error al registrar usuario:', error);
+			alert('Hubo un error al registrar el usuario');
+		}
 		setActivities([...activities, { ...form, id: Date.now() }]);
 		setForm({ toa: '', startDate: '', endDate: '' });
 	};
@@ -88,12 +130,23 @@ const MiRuta = () => {
 						className='flex flex-col gap-4'
 					>
 						<div>
-							<StyledActivityText>Título del circuito</StyledActivityText>
 							<StyledActivity
+								type='text'
 								name='toa'
 								value={form.toa}
 								onChange={handleChange}
 								required
+								placeholder='Título del circuito'
+							/>
+						</div>
+						<div>
+							<StyledActivity
+								type='number'
+								name='km'
+								value={form.km}
+								onChange={handleChange}
+								required
+								placeholder='km recorridos'
 							/>
 						</div>
 						<div>
@@ -117,13 +170,13 @@ const MiRuta = () => {
 							/>
 						</div>
 					</ContainerForm>
-					<StyledButtonActivity type='submit'>
+					<StyledButtonActivity type='submit' onClick={handleSubmit}>
 						Registrar Circuito
 					</StyledButtonActivity>
 				</FormWrapper>
 
 				<ActivityCard>
-					{activities.map(activity => (
+					{allActivities.map(activity => (
 						<Card key={activity.id}>
 							<CardContent>
 								<p className='font-semibold'>{activity.toa}</p>
@@ -134,12 +187,12 @@ const MiRuta = () => {
 					))}
 				</ActivityCard>
 
-				{activities.length > 0 && (
+				{allActivities.length > 0 && (
 					<ChartWrapper>
 						<h2>Progreso</h2>
 						<ResponsiveContainer width='100%' height={300}>
 							<LineChart
-								data={activities.map((a, i) => ({
+								data={allActivities.map((a, i) => ({
 									name: `Act ${i + 1}`,
 									duration:
 										(new Date(a.endDate) - new Date(a.startDate)) / 60000
