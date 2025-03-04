@@ -42,7 +42,7 @@ const Home = () => {
 				{/* <Styledtext>¿Que deseas hacer hoy?</Styledtext> */}
 				<StyledContainerMenu>
 					<Link to='/home'>
-						<StyledMenuclick>Resumen</StyledMenuclick>
+						<StyledMenuclick>Inicio</StyledMenuclick>
 					</Link>
 
 					<Link to='/miruta'>

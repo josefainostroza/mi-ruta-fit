@@ -42,7 +42,7 @@ const Register = () => {
 			console.log(response);
 
 			if (response.status === 200) {
-				navigate('/home');
+				navigate('/login');
 			}
 		} catch (error) {
 			console.error('Error al registrar usuario:', error);
